@@ -1,12 +1,4 @@
 
-
-
-
-
-#-----------------------IMPORTING MODULES-----------------------------------------------------------------------------------
-#       THIS INTENDATION HAS ALL THE NECESSARY MODULES WHICH ARE BEING USED. ALL THE
-#        MODULES USED ARE OPEN-SOURCE, SO THAT THERE ARE NOT ANY COPY WRITE CLAMES.
-#-----------------------------------------------------------------------------------------------------------------------------------------
 from tkinter import *
 from tkinter import messagebox as mb
 import pyttsx3
@@ -16,30 +8,19 @@ import wikipedia
 import webbrowser
 import os
 import requests
-#-----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-
-
-
-
-#---------------------WIDGET CLASS----------------------------------------------------------------------------------------------------------------
-#          THIS IS THE MAIN AND ONLY CLASS OF THE APPLICATION AND ALSO THE MOST IMPORTANT ONE.
-#          IT HAS ALL THE NECESSARY FUCTIONS, LISTS, CONDITION AND INIT FUCTION.
-#---------------------------------------------------------------------------------------------------------------------------------------------------------
 class Widget():
 
     
 
 
 
-    #------------------------------------------------------KEY WORD LISTS---------------------------------------------------------------------------
-    #                THESE ARE ALL THE LIST WHICH CONTAINS IMPORTANT KEYWORDS WHICH THE Bhagat CAN USE.
-    #--------------------------------------------------------------------------------------------------------------------------------------------------------
-    greet = ['Hey Whats up! How are you doing', 'Hello Sargam','Hi ! I am your Assistant','Hello, How can I help You']
+  
+    greet = ['Hey Whats up! How are you doing', 'Hello Laraib','Hi ! I am your Assistant','Hello, How can I help You']
     how = ['I am Fine Sir, What about You','I am fine as always', 'what you think','just fine!!']
     name = ['You Can call me Rimsar','My Name Is Rimsar','you named me Rimsar','You Should Know this, My name Is Rimsar']
     creator = ['You made Me','I was Made by Sargam','One And only, Sargam','Best in the World, Sargam']
@@ -49,12 +30,11 @@ class Widget():
     frd = ['I will Feel Lucky To Be Your Friend','Yaa Ofcource']
     me = ['You Told Me Your Name, Sargam','I Think That\'s Sargam','Your Name That I Know Is Sargam']
     thanks = ['My Pleasure','Welcome','Ohh Don\'t amberis me by saying thanks ','So Sweet!!']
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------
+    
 
 
 
 
-    #--------------------------------------------ABOUT US FUNCTION---------------------------------------------------------------------------------
     def more(self):
         more = Tk()
         more.configure(bg='powder blue')
@@ -63,15 +43,15 @@ class Widget():
         
 
         
-        Label(more, text='Rimsar - The Virtual Assistant',bg='powder blue',font=('Arial Black',10,'bold')).pack()
+        Label(more, text='laraib - The Virtual Assistant',bg='powder blue',font=('Arial Black',10,'bold')).pack()
 
-        Label(more, text='By: Sargam',bg='powder blue',font=('Arial Black',10,'bold')).pack()
+        Label(more, text='By: Laraib',bg='powder blue',font=('Arial Black',10,'bold')).pack()
         
-        out = 'My Name Is Rimsar. I Was Created By Sargam. \n She Made Me Using Python Language. I Was Made\n As A Project For Her. But Later I Turned Really Well.\n So He Started Working Really Hard On Me. His\n Progress In Me Was Just Great. So, Now I Am Her One\n Of The Dream Project Which SHe Is Planning\n To Build For Cross-Platform.'
+        out = 'My Name Is Laraib. I Was Created By Alam. \n He Made Me Using Python Language. I Was Made\n As A Project For Him. But Later I Turned Really Well.\n So He Started Working Really Hard On Me. His\n Progress In Me Was Just Great. So, Now I Am His One\n Of The Dream Project Which He Is Planning\n To Build For Cross-Platform.'
         
         Label(more, text=out,bg='powder blue',font=('Arial Black',10,'bold')).pack()
         
-        Label(more, text='Contact us at:\n9803588671',bg='powder blue',font=('Arial Black',10,'bold')).pack(side=LEFT)
+        Label(more, text='Contact us at:\n7317853933',bg='powder blue',font=('Arial Black',10,'bold')).pack(side=LEFT)
         
         
         Button(more, text='Narrate' ,font=('Arial Black',10,'bold'), command=lambda : self.speak(out)).pack(side=RIGHT,padx=10 )
@@ -83,86 +63,70 @@ class Widget():
         
 
 
-    #--------------------------------ENGINE FOR SPEAKING--------------------------------------------------------------
-    #         THESE VARIABLES ARE  BUILDING AN ENGINE WHICH THE SPEAK FUNCTION IS USING.
-    #-----------------------------------------------------------------------------------------------------------------------------
+    
     engine = pyttsx3.init('sapi5')
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[0].id)
-    #------------------------------------------------------------------------------------------------------------------------------
+    
 
 
 
 
 
-    #---------------------------PRINTING FUNC---------------------------------------------------
-    #       THIS FUCTION PRINTS THE Bhagat'S RESPONCE TO SCREEN.
-    #---------------------------------------------------------------------------------------------------
     def printing_func(self, out):
         self.text_box2.delete(1.0,END)
         self.text_box2.insert(INSERT,  out)
-    #----------------------------------------------------------------------------------------------------
 
 
 
 
 
-    #-----------------SPEAK FUNCTION-------------------------------
-    #    THIS FUNCTION SPEAKS THE Bhagat'S RESPONCE
-    #------------------------------------------------------------------------
+    
+    
     def speak(self,s):
         self.engine.say(s)
         self.engine.runAndWait()
-    #----------------------------------------------------
+    
 
 
 
 
 
 
-    #-----------------------SEND FUNC-----------------------------------------------------------------
-    #        THIS FUCTION IS BEING USED TO SEND USER_INPUT TO Bhagat.
-    #--------------------------------------------------------------------------------------------------------
     def send_func(self):
         user_input = self.search_var.get().lower()
         self.search_var.set('')
         self.text_box1.delete(1.0,END)
         self.text_box1.insert(INSERT,user_input)
-    #-------------------------------------------------------------------------------------------------------
         
         
         
 
 
-        #------------------------------------CONDITIONS------------------------------------------------------------------------------------------
-        # THESE ARE CONDITIONS WHICH THE Bhagat CHECKS. HE RESPOND TO THE MOST RELEVENT CONDITION.
-        #-------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-        #----------------ABOUT CONDITION---------------------
+       
         if 'about' in user_input and 'you' in user_input:
             out = 'Ok Let Me Introduce Myself.'
-            self.printing_func(out)                                       #|
+            self.printing_func(out)                                       
             self.speak(out)
             self.more()
-        #-----------------------------------------------------------------
+        
             
 
             
 
 
-        #------YOU CONDITIONS ------------------------
-        elif 'you' in user_input:                                           #|
+        elif 'you' in user_input:                                           
             if 'who' in user_input and 'are' in user_input:
-                r = random.randint(0,len(self.name)-1)       #|
-                out = self.name[r]                                            #|
-                self.printing_func(out)                                       #|
+                r = random.randint(0,len(self.name)-1)       
+                out = self.name[r]                                            
+                self.printing_func(out)                                       
                 self.speak(out)
                 
-            elif 'how are' in user_input:                               #|
-                r = random.randint(0,len(self.how)-1)       #|
-                out = self.how[r]                                            #|
-                self.printing_func(out)                                       #|
+            elif 'how are' in user_input:                               
+                r = random.randint(0,len(self.how)-1)       
+                out = self.how[r]                                            
+                self.printing_func(out)                                       
                 self.speak(out)                                                      #|
                                                                                           #|
             elif 'who made' in user_input:                        #|
@@ -207,8 +171,8 @@ class Widget():
 
 
         #-----------------GURPARTAP CONDITION-------------------------------------------------------------------
-        elif 'Rimsha'  in user_input:
-            out = 'Rimsha Is A Good Friend Of Sargam. SHe is well Known as rimsar'                                                                                               #|   
+        elif 'Laraib'  in user_input:
+            out = 'Laraib Is A Good Friend Of Kaif. He is well Known as Laraib'                                                                                               #|   
             self.printing_func(out)                                                                                    #|
             self.speak(out)
         #-----------------------------------------------------------------------------------------------------------------------
@@ -361,7 +325,7 @@ class Widget():
 
         #----------EXIT CONDITION------------------------
         elif 'exit' in user_input:                                           #|
-            out = 'Okk I am going, Have a good Day sir'  #|
+            out = 'Okk I am going, Have a good Day Boss'  #|
             self.printing_func(out)                                             #|
             self.speak(out)                                                             #|
             self.win.destroy()
@@ -623,23 +587,19 @@ class Widget():
             out = 'Great'
             self.printing_func(out)                                                                             #|
             self.speak(out)
-        #-----------------------------------------------------------------------------------
+        
 
 
 
-        #----------------SHUTDOWN COMMAND----------------------------------------
         elif 'shutdown' in user_input:
             out='Shutting Down The System'                                                                                   #|
             self.printing_func(out)                                                                             #|
             self.speak(out)
             os.system('shutdown -s')
-        #-----------------------------------------------------------------------------------------
-            
-            
 
 
 
-        #-------------------ELSE CONDITION----------------------------------------
+      
         else:                                                                                                                    #|
 
                 to_search = user_input
@@ -659,26 +619,6 @@ class Widget():
                     self.printing_func(out)
                     self.speak(out)
 
-        #--------------------------------------------------------------------------------------
-
-                
-                
-                
-
-                
-                 
-
-
-    #----------------------------------------------------------------------------------
-
-
-
-
-
-                               
-    #------------------------------------------------------------------------------------------------------------------------------------
-
-
         
         
 
@@ -689,17 +629,16 @@ class Widget():
 
 
     
-    #----------------------------------------------------CONSTRUCTER  FUNCTION---------------------------------------------------------
     def __init__(self):
         self.win = Tk()
-        self.win.geometry('380x300')
+        self.win.geometry('500x300')
         self.win.resizable(0,0)
         self.win.configure(bg='orange')
         
         Label(self.win, text='ASSISTANT',font=('arial black',18),fg='white',width=30,bg='green',bd=5).pack()
 
         Label(self.win, text='Me' , font=('arial black',20),fg='white',bg='orange').place(x=60,y=50)
-        Label(self.win, text='Rimsar' , font=('arial black',20),fg='white',bg='orange').place(x=260,y=50)
+        Label(self.win, text='Enter To talk' , font=('arial black',20),fg='white',bg='orange').place(x=260,y=50)
 
         self.text_box1 = Text(self.win, font=('arial black',13),width=16,height=5,fg='blue', wrap=WORD )
         self.text_box1.place(x=10,y=100)
@@ -719,11 +658,7 @@ class Widget():
         self.win.bind('<Return>',enter)
         
         self.win.mainloop()
-    #------------------------------------------------------------------------------------------------------------------------------------------
-
+   
 
 
 root = Widget()
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#--------------------------------------------------------------CODE FINISH------------------------------------------------------------------------------------
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
